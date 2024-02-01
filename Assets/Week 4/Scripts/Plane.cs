@@ -42,6 +42,12 @@ public class Plane : MonoBehaviour
     }
     private void Update()
     {
+        Vector3 PosPlane = Camera.main.WorldToViewportPoint(transform.position);
+        if ( PosPlane.x > 1 || PosPlane.y > 1 || PosPlane.x < 0 || PosPlane.y < 0)
+        {
+            Destroy(gameObject);
+        }
+
         if(Input.GetKey(KeyCode.Space))
         {
             landingTimer += 0.5f * Time.deltaTime;
