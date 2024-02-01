@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -304,6 +304,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  planeSprite:
+  - {fileID: 21300000, guid: c73a14ae579ec794db786a6cb7b74e20, type: 3}
+  - {fileID: 21300000, guid: 24c052ba7e2db304696a436c1d715f04, type: 3}
+  - {fileID: 21300000, guid: 6bf9530ecd83c664099aa71dd0a5223e, type: 3}
+  - {fileID: 21300000, guid: 3c91ca5ea46cd97409cdc7acb86e3523, type: 3}
 --- !u!58 &3515578495296658395
 CircleCollider2D:
   m_ObjectHideFlags: 0

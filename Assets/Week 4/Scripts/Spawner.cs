@@ -5,10 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject plane;
-    public float spawnPoint;
+    //public float spawnPoint;
     float Timer = 0;
     float TargetTime;
-    float randomNumber;
     // Start is called before the first frame update
     void Start()
     {

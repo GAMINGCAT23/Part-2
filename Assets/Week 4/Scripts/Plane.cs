@@ -11,20 +11,23 @@ public class Plane : MonoBehaviour
     LineRenderer lineRenderer;
     Vector2 currentPosition;
     Rigidbody2D rigidbody;
-    public float speed = 1;
+    public float speed;
     public AnimationCurve landing;
     float landingTimer;
     public Sprite[] planeSprite = new Sprite[4];
+    SpriteRenderer spriteRender;
     //aa
 
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        spriteRender = GetComponent<SpriteRenderer>();
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position + new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
-        GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        GetComponent<SpriteRenderer>().sprite = planeSprite[(int)Random.Range(0, 4)];
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+        spriteRender.sprite = planeSprite[(int)Random.Range(0, 4)];
         rigidbody = GetComponent<Rigidbody2D>();
+        speed = Random.Range(1, 3);
     }
     private void FixedUpdate()
     {
@@ -87,6 +90,6 @@ public class Plane : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //spriteRenderer.color = Color.red;
+        spriteRender.color = Color.red;
     }
 }
