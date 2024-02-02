@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class RunWay : MonoBehaviour
 {
-    public float points = 0;
+    Collider2D Runway;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Runway = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.OverlapPoint(collision.gameObject.transform.position))
         {
-
-            Destroy(collision.gameObject);
-            points = points + 1;
+         collision.gameObject.GetComponent<Plane>().AllowLanding = true;
         }
     }
 }

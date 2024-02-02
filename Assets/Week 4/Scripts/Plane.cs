@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
 public class Plane : MonoBehaviour
@@ -16,6 +17,8 @@ public class Plane : MonoBehaviour
     float landingTimer;
     public Sprite[] planeSprite = new Sprite[4];
     SpriteRenderer spriteRender;
+    public bool AllowLanding = false;
+    public float score = 0;
     //aa
 
     private void Start()
@@ -42,19 +45,14 @@ public class Plane : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 PosPlane = Camera.main.WorldToViewportPoint(transform.position);
-        if ( PosPlane.x > 1 || PosPlane.y > 1 || PosPlane.x < 0 || PosPlane.y < 0)
-        {
-            Destroy(gameObject);
-        }
-
-        if(Input.GetKey(KeyCode.Space))
+        if (AllowLanding)
         {
             landingTimer += 0.5f * Time.deltaTime;
             float interpolation = landing.Evaluate(landingTimer);
             if(transform.localScale.z < 0.1f)
             {
                 Destroy(gameObject);
+                score++;
             }
             transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
         }
@@ -94,18 +92,19 @@ public class Plane : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         spriteRender.color = Color.red;
-        if (Vector3.Distance(transform.position, collision.gameObject.transform.position) <= 0.5f)
+        if (Vector3.Distance(transform.position, collision.gameObject.transform.position) <= 0.75f)
         {
             Destroy(gameObject);
         }
-        else 
+        else
         {
-            
+
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         spriteRender.color = Color.white;
