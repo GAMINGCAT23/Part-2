@@ -57,6 +57,7 @@ public class Knight : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
         if (health == 0)
         {
+            //die?
             animator.SetTrigger("Death");
         }
         else 
