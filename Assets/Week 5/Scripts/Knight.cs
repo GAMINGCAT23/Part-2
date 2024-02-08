@@ -45,7 +45,8 @@ public class Knight : MonoBehaviour
     {
        clickingOnSelf = true;
        takeDamage(1);
-        healthBar.TakeDamage(1);
+       healthBar.TakeDamage(1);
+       //1
     }
 
     private void OnMouseUp()
