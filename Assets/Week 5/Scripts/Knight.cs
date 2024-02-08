@@ -13,6 +13,8 @@ public class Knight : MonoBehaviour
     public float health;
     public float maxHealth = 5;
     public HealthBar healthBar;
+    bool isDead;
+    //1
     // Start is called before the first frame update
     void Start()
     {
@@ -23,30 +25,43 @@ public class Knight : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movement = destination - (Vector2) transform.position;
-        if(movement.magnitude < 0.1)
+        if (isDead) return;
+        movement = destination - (Vector2)transform.position;
+        if (movement.magnitude < 0.1)
         {
             movement = Vector2.zero;
         }
-        rigidbody.MovePosition(rigidbody.position +  movement.normalized * speed * Time.deltaTime);
+        rigidbody.MovePosition(rigidbody.position + movement.normalized * speed * Time.deltaTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !clickingOnSelf)
+        if (isDead) return;
+
+        if (Input.GetMouseButtonDown(0) && !clickingOnSelf)
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetTrigger("Attack");
+
+        }
+
         animator.SetFloat("Movement", movement.magnitude);
+
+
     }
 
     private void OnMouseDown()
     {
-       clickingOnSelf = true;
-       takeDamage(1);
-       healthBar.TakeDamage(1);
-       //1
+        if (isDead) return;
+        clickingOnSelf = true;
+        takeDamage(1);
+        healthBar.TakeDamage(1);
+        //1
+
     }
 
     private void OnMouseUp()
@@ -54,7 +69,7 @@ public class Knight : MonoBehaviour
         clickingOnSelf = false;
     }
 
-    public void takeDamage(float damage) 
+    public void takeDamage(float damage)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -62,10 +77,12 @@ public class Knight : MonoBehaviour
         {
             //die?
             animator.SetTrigger("Death");
+            isDead = true;
         }
-        else 
+        else
         {
             animator.SetTrigger("TakeDamage");
+            isDead = false;
         }
     }
 }
