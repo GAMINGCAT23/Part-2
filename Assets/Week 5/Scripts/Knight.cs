@@ -11,17 +11,20 @@ public class Knight : MonoBehaviour
     Rigidbody2D rigidbody;
     Animator animator;
     bool clickingOnSelf = false;
-    public float health;
+    public float health = 5;
     public float maxHealth = 5;
     public HealthBar healthBar;
-    bool isDead;
+    bool isDead = false;
+    public float LeftHealth;
     //1
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        health = maxHealth;
+        health = PlayerPrefs.GetFloat("LeftHealth", maxHealth);
+        Debug.Log(health);
+        SendMessage("Sethealth", health);
     }
 
     private void FixedUpdate()
@@ -33,6 +36,17 @@ public class Knight : MonoBehaviour
             movement = Vector2.zero;
         }
         rigidbody.MovePosition(rigidbody.position + movement.normalized * speed * Time.deltaTime);
+    }
+
+    public void LoadHealth()
+    {
+        LeftHealth = PlayerPrefs.GetFloat("LeftHealth", health);
+    }
+
+    public void SendHP()
+    {
+        healthBar.SendMessage("SetHealth", health, SendMessageOptions.DontRequireReceiver);
+        Debug.Log("MSG SENT");
     }
 
     // Update is called once per frame
@@ -51,7 +65,6 @@ public class Knight : MonoBehaviour
         }
 
         animator.SetFloat("Movement", movement.magnitude);
-
 
     }
 
@@ -72,8 +85,11 @@ public class Knight : MonoBehaviour
 
     public void takeDamage(float damage)
     {
+        Debug.Log(damage);
+        Debug.Log(health);
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
+        PlayerPrefs.SetFloat("LeftHealth", health);
         if (health == 0)
         {
             //die?

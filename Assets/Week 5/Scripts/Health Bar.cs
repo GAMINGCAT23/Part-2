@@ -11,6 +11,12 @@ public class HealthBar : MonoBehaviour
     {
         slider.value -= damage;
     }
+    
+    public void Sethealth(float health)
+    {
+        slider.value = health;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +26,6 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
