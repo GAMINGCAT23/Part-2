@@ -11,6 +11,8 @@ public class MonsterS : MonoBehaviour
     public Transform MonsterSpawner;
     float Timer = 0;
     float TargetTime;
+    public float Max;
+    public float Min;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,7 @@ public class MonsterS : MonoBehaviour
         {
             Instantiate(Monster, MonsterSpawner);
             Timer = 0;
-            TargetTime = Random.Range(5, 10);
+            TargetTime = Random.Range(Min, Max);
         }
         else
         {
