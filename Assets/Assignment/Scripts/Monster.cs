@@ -11,6 +11,8 @@ public class Monster : MonoBehaviour
     public float speed = 2;
     Rigidbody2D rigidbody;
     Animator animator;
+    public float TargetTime = 1.5f;
+    public float Timer;
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +33,17 @@ public class Monster : MonoBehaviour
         }
         rigidbody.MovePosition(rigidbody.position + movement.normalized * speed * Time.deltaTime);
     }
+
+    //public void Death() 
+    //{
+        //animator.SetTrigger("Death");
+    //}
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //if (!isDead) return;
+        collision.gameObject.SendMessage("TakeDamageFromMonster", 1, SendMessageOptions.DontRequireReceiver);
         Destroy(gameObject);
-
+        Debug.Log(collision.gameObject.name);
     }
 }

@@ -12,7 +12,7 @@ public class Basement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = maxHealth; 
     }
 
     // Update is called once per frame
@@ -23,16 +23,17 @@ public class Basement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        TakeDamageFromMonster(1);
+        //TakeDamageFromMonster(1);
+        //healthBar1.TakeDamage(1);
         //Destroy(collision.gameObject);
     }
 
     public void TakeDamageFromMonster(float damage) 
     {
         Debug.Log(damage);
-        Debug.Log(health);
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
-        healthBar1.SendMessage("SetHealth", health, SendMessageOptions.DontRequireReceiver);
+        SendMessage("SetHealth", health, SendMessageOptions.DontRequireReceiver);
+        Debug.Log(health);
     }
 }

@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         if (isAttack)
         {
             Destroy(collision.gameObject);
-            isAttack=false;
+            isAttack =false;
         }
     }
 

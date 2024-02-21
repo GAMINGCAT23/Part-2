@@ -8,9 +8,10 @@ public class HealthBar1 : MonoBehaviour
 {
     public Slider slider;
 
-    public void TakeDamage(float damage)
+    public void TakeDamageFromMonster(float damage)
     {
         slider.value -= damage;
+        Debug.Log("TakeDamage");
 
     }
     public void Sethealth(float health)
