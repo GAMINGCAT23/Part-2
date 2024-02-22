@@ -14,6 +14,7 @@ public class player : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = DefultColor;
+        selected(false);
     }
 
     // Update is called once per frame
@@ -23,7 +24,7 @@ public class player : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        selected(true);
+        Controller.SetSelectedPlayer(this);
     }
 
     //private void OnMouseUp()
