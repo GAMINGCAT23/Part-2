@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Controller : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Controller : MonoBehaviour
     public float MaxCharge = 1;
     Vector2 direction;
     public static player selectedPlayer { get; private set; }
+    public static int score;
     public static void SetSelectedPlayer(player player)
     {
         if (selectedPlayer != null)
