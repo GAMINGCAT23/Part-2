@@ -8,10 +8,13 @@ public class player : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     public Color DefultColor;
+    Rigidbody2D rb;
+    public float speed = 100;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = DefultColor;
         selected(false);
@@ -42,5 +45,10 @@ public class player : MonoBehaviour
         {
             spriteRenderer.color = DefultColor;
         }
+    }
+
+    public void Move(Vector2 direction)
+    {
+        rb.AddForce(direction * speed);
     }
 }

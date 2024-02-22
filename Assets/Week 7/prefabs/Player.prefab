@@ -246,4 +246,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c409c4bf6aecc8b47b20ce382f266632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefultColor: {r: 0, g: 0, b: 0, a: 0}
+  DefultColor: {r: 0.50980395, g: 0, b: 0, a: 0}
+  speed: 1000
